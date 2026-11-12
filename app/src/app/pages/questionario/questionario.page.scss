@@ -1,0 +1,30 @@
+.mu-topbar h1 { font-size: 1.1rem; }
+.barra { height: 8px; border-radius: 99px; background: var(--mu-input-bg); overflow: hidden; }
+.preenchido { height: 100%; background: var(--mu-gradient); border-radius: 99px; transition: width .3s; }
+.contador { font-size: .8rem; color: var(--mu-placeholder); margin: 10px 0 28px; }
+.enunciado-intro { color: var(--mu-muted); font-size: .9rem; margin: 0 0 8px; }
+.enunciado { font-size: 1.35rem; font-weight: 600; line-height: 1.4; color: var(--mu-text); margin: 0 0 28px; }
+.opcoes {
+  display: flex; flex-direction: column; gap: 12px;
+  button {
+    height: 58px; border-radius: var(--mu-radius-field);
+    border: 1.5px solid transparent; background: var(--mu-input-bg);
+    font: inherit; font-size: .98rem; color: var(--mu-label); text-align: left; padding: 0 22px;
+    cursor: pointer; transition: all .15s;
+    &.ativo { background: #e5efe8; border-color: var(--mu-green-light); color: var(--mu-green-dark); font-weight: 600; }
+  }
+}
+.enviar { margin-top: 28px; }
+.resultado {
+  flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
+  .anel {
+    width: 130px; height: 130px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    border: 10px solid var(--mu-green-light); background: #fff; margin-bottom: 16px;
+    strong { font-size: 2rem; color: var(--mu-text); font-weight: 600; }
+    &.nivel-moderado { border-color: #e2b56f; }
+    &.nivel-elevado { border-color: #d98a7c; }
+  }
+  .nivel { margin-bottom: 14px; }
+  .aviso { font-size: .78rem; color: var(--mu-placeholder); margin: 0 8px 26px; line-height: 1.5; }
+}

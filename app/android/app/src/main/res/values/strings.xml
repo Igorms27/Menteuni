@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">MenteUni</string>
+    <string name="title_activity_main">MenteUni</string>
+    <string name="package_name">br.edu.uniceplac.menteuni</string>
+    <string name="custom_url_scheme">br.edu.uniceplac.menteuni</string>
+</resources>

@@ -1,0 +1,32 @@
+<ion-content class="mu-page">
+  <div class="mu-container interna">
+    <h1 class="mu-page-title">Dicas de bem-estar</h1>
+    <p class="mu-page-sub">Pequenos cuidados que cabem na rotina da faculdade.</p>
+
+    @if (carregando()) {
+      <div class="mu-loading"><ion-spinner name="crescent"></ion-spinner></div>
+    }
+
+    @for (c of demais(); track c.id) {
+      <button class="mu-card item" [class.aberto]="aberto() === c.id" (click)="alternar(c.id)">
+        <div class="cab">
+          <span class="ic" [class.artigo]="c.tipo === 'ARTIGO'"><ion-icon [name]="icone(c)"></ion-icon></span>
+          <h3>{{ c.titulo }}</h3>
+          <ion-icon name="chevron-down-outline" class="seta"></ion-icon>
+        </div>
+        @if (aberto() === c.id) { <p>{{ c.descricao }}</p> }
+      </button>
+    }
+
+    @for (c of apoio(); track c.id) {
+      <div class="mu-card mu-card-green apoio">
+        <div class="cab"><ion-icon name="call-outline"></ion-icon><h3>{{ c.titulo }}</h3></div>
+        <p>{{ c.descricao }}</p>
+        <div class="acoes">
+          <a href="tel:188" class="acao">Ligar 188</a>
+          @if (c.url) { <button class="acao" (click)="abrir(c.url)">Abrir site <ion-icon name="open-outline"></ion-icon></button> }
+        </div>
+      </div>
+    }
+  </div>
+</ion-content>

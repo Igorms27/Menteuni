@@ -1,0 +1,50 @@
+<ion-content class="mu-page">
+  <div class="mu-container">
+    <div class="logo">
+      <img src="assets/logo.png" alt="MenteUni" />
+    </div>
+
+    <p class="mu-subtitle">Um espaço só seu. Sem pressa,<br />sem julgamentos.</p>
+
+    <form [formGroup]="form" (ngSubmit)="entrar()" novalidate>
+      <div class="mu-field-group">
+        <label class="mu-label" for="email">Seu e-mail institucional</label>
+        <div class="mu-field" [class.invalid]="invalido('email')">
+          <ion-icon name="person-outline"></ion-icon>
+          <input id="email" type="email" formControlName="email" autocomplete="email"
+                 inputmode="email" placeholder="nome&#64;universidade.edu.br" />
+        </div>
+        @if (invalido('email')) { <p class="mu-error">Informe um e-mail válido.</p> }
+      </div>
+
+      <div class="mu-field-group senha">
+        <label class="mu-label" for="senha">Sua senha</label>
+        <div class="mu-field" [class.invalid]="invalido('senha')">
+          <ion-icon name="lock-closed-outline"></ion-icon>
+          <input id="senha" [type]="mostrarSenha() ? 'text' : 'password'" formControlName="senha"
+                 autocomplete="current-password" placeholder="••••••••" />
+          <button type="button" class="mu-eye" (click)="mostrarSenha.set(!mostrarSenha())"
+                  [attr.aria-label]="mostrarSenha() ? 'Ocultar senha' : 'Mostrar senha'">
+            <ion-icon [name]="mostrarSenha() ? 'eye-outline' : 'eye-off-outline'"></ion-icon>
+          </button>
+        </div>
+        @if (invalido('senha')) { <p class="mu-error">Informe sua senha.</p> }
+      </div>
+
+      <div class="esqueci">
+        <button type="button" class="mu-link" (click)="esqueciSenha()">Esqueci minha senha</button>
+      </div>
+
+      <button type="submit" class="mu-btn" [disabled]="enviando()">
+        {{ enviando() ? 'Entrando...' : 'Entrar' }}
+      </button>
+      @if (demorando()) {
+        <p class="mu-acordando">Conectando ao servidor… na primeira vez pode levar até 1 minuto.</p>
+      }
+    </form>
+
+    <div class="mu-divider">ou</div>
+
+    <p class="mu-footer-text">Primeira vez aqui? <a class="mu-link" routerLink="/cadastro">Cadastre-se</a></p>
+  </div>
+</ion-content>

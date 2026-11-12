@@ -1,0 +1,22 @@
+.cartao {
+  text-align: center; padding: 28px 20px;
+  .avatar { width: 84px; height: 84px; border-radius: 50%; margin: 0 auto 14px;
+            background: var(--mu-gradient); color: #fff; font-size: 1.8rem; font-weight: 600;
+            display: flex; align-items: center; justify-content: center; }
+  h2 { margin: 0 0 4px; font-size: 1.2rem; font-weight: 600; color: var(--mu-text); }
+  p { margin: 0 0 18px; color: var(--mu-muted); font-size: .9rem; }
+  .editar { display: flex; align-items: center; justify-content: center; gap: 8px; height: 46px; ion-icon { font-size: 18px; } }
+  .campo { margin-bottom: 14px; }
+  .botoes { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; .mu-btn, .mu-btn-sec { height: 50px; } }
+}
+.menu {
+  padding: 6px 8px;
+  button { width: 100%; display: flex; align-items: center; gap: 14px; padding: 16px 12px; border: 0; background: none;
+           font: inherit; font-size: .95rem; color: var(--mu-label); cursor: pointer; text-align: left;
+           & + button { border-top: 1px solid var(--mu-border); }
+           ion-icon { font-size: 21px; color: var(--mu-green-dark); }
+           span { flex: 1; }
+           .seta { color: var(--mu-icon); font-size: 18px; }
+           &.sair { color: var(--mu-danger); ion-icon { color: var(--mu-danger); } } }
+}
+.rodape { text-align: center; color: var(--mu-placeholder); font-size: .8rem; line-height: 1.6; margin-top: 18px; }

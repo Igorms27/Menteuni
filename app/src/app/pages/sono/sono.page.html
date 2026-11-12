@@ -1,0 +1,46 @@
+<ion-content class="mu-page">
+  <div class="mu-container interna">
+    <div class="mu-topbar">
+      <button class="mu-back" (click)="voltar()" aria-label="Voltar"><ion-icon name="chevron-back-outline"></ion-icon></button>
+      <h1>Registro de sono</h1>
+    </div>
+    <p class="mu-page-sub">Dormir bem é parte do cuidado com a mente. Como foi sua última noite?</p>
+
+    <section class="mu-card">
+      <p class="mu-question">Quantas horas você dormiu?</p>
+      <div class="horas">
+        <button type="button" (click)="ajustar(-0.5)" aria-label="Menos meia hora"><ion-icon name="remove-outline"></ion-icon></button>
+        <div class="valor">
+          <strong>{{ horas() | number:'1.0-1':'pt' }}</strong><span>horas</span>
+        </div>
+        <button type="button" (click)="ajustar(0.5)" aria-label="Mais meia hora"><ion-icon name="add-outline"></ion-icon></button>
+      </div>
+    </section>
+
+    <section class="mu-card">
+      <p class="mu-question">Como foi a qualidade do sono?</p>
+      <div class="mu-scale">
+        @for (q of qualidades; track $index) {
+          <button type="button" [class.ativo]="qualidade() === $index + 1" (click)="qualidade.set($index + 1)">{{ $index + 1 }}</button>
+        }
+      </div>
+      <div class="mu-scale-legend"><span>Péssima</span><span>Ótima</span></div>
+    </section>
+
+    <button class="mu-btn" (click)="salvar()" [disabled]="enviando()">{{ enviando() ? 'Salvando...' : 'Salvar registro' }}</button>
+
+    <h2 class="mu-section">Últimas noites</h2>
+    @for (r of registros(); track r.id) {
+      <div class="noite">
+        <span class="lua"><ion-icon name="moon"></ion-icon></span>
+        <div class="info">
+          <strong>{{ r.data | date:'EEE, dd/MM':'':'pt' }}</strong>
+          <small>Qualidade: {{ qualidades[r.qualidade - 1] }}</small>
+        </div>
+        <span class="h">{{ r.horasSono | number:'1.0-1':'pt' }}h</span>
+      </div>
+    } @empty {
+      <p class="mu-empty">Nenhum registro ainda. Que tal começar hoje?</p>
+    }
+  </div>
+</ion-content>

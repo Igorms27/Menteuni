@@ -1,0 +1,71 @@
+<ion-content class="mu-page">
+  <div class="mu-container">
+    <div class="logo">
+      <img src="assets/logo.png" alt="MenteUni" />
+    </div>
+
+    <h1 class="mu-title">Crie seu espaço</h1>
+    <p class="mu-subtitle">Dê o primeiro passo para cuidar de<br />você com calma.</p>
+
+    <form [formGroup]="form" (ngSubmit)="criarConta()" novalidate>
+      <div class="mu-field-group">
+        <label class="mu-label" for="nome">Nome completo</label>
+        <div class="mu-field" [class.invalid]="invalido('nome')">
+          <ion-icon name="person-outline"></ion-icon>
+          <input id="nome" type="text" formControlName="nome" autocomplete="name"
+                 placeholder="Como quer ser chamado(a)" />
+        </div>
+        @if (invalido('nome')) { <p class="mu-error">Informe seu nome.</p> }
+      </div>
+
+      <div class="mu-field-group">
+        <label class="mu-label" for="email">E-mail institucional</label>
+        <div class="mu-field" [class.invalid]="invalido('email')">
+          <ion-icon name="mail-outline"></ion-icon>
+          <input id="email" type="email" formControlName="email" autocomplete="email"
+                 inputmode="email" placeholder="seu.nome&#64;universidade.edu.br" />
+        </div>
+        @if (invalido('email')) { <p class="mu-error">Informe um e-mail válido.</p> }
+      </div>
+
+      <div class="mu-field-group">
+        <label class="mu-label" for="senha">Sua senha</label>
+        <div class="mu-field" [class.invalid]="invalido('senha')">
+          <ion-icon name="lock-closed-outline"></ion-icon>
+          <input id="senha" [type]="mostrarSenha() ? 'text' : 'password'" formControlName="senha"
+                 autocomplete="new-password" placeholder="••••••••" />
+          <button type="button" class="mu-eye" (click)="mostrarSenha.set(!mostrarSenha())"
+                  [attr.aria-label]="mostrarSenha() ? 'Ocultar senha' : 'Mostrar senha'">
+            <ion-icon [name]="mostrarSenha() ? 'eye-outline' : 'eye-off-outline'"></ion-icon>
+          </button>
+        </div>
+        @if (invalido('senha')) { <p class="mu-error">A senha precisa ter pelo menos 6 caracteres.</p> }
+      </div>
+
+      <div class="mu-field-group">
+        <label class="mu-label" for="confirmar">Confirme sua senha</label>
+        <div class="mu-field" [class.invalid]="invalido('confirmar')">
+          <ion-icon name="lock-closed-outline"></ion-icon>
+          <input id="confirmar" [type]="mostrarConfirmar() ? 'text' : 'password'" formControlName="confirmar"
+                 autocomplete="new-password" placeholder="••••••••" />
+          <button type="button" class="mu-eye" (click)="mostrarConfirmar.set(!mostrarConfirmar())"
+                  [attr.aria-label]="mostrarConfirmar() ? 'Ocultar senha' : 'Mostrar senha'">
+            <ion-icon [name]="mostrarConfirmar() ? 'eye-outline' : 'eye-off-outline'"></ion-icon>
+          </button>
+        </div>
+        @if (invalido('confirmar')) { <p class="mu-error">As senhas não conferem.</p> }
+      </div>
+
+      <button type="submit" class="mu-btn criar" [disabled]="enviando()">
+        {{ enviando() ? 'Criando...' : 'Criar conta' }}
+      </button>
+      @if (demorando()) {
+        <p class="mu-acordando">Conectando ao servidor… na primeira vez pode levar até 1 minuto.</p>
+      }
+    </form>
+
+    <div class="mu-divider">ou</div>
+
+    <p class="mu-footer-text">Já tem uma conta? <a class="mu-link" routerLink="/login">Entrar</a></p>
+  </div>
+</ion-content>

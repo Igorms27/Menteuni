@@ -1,0 +1,57 @@
+<ion-content class="mu-page">
+  <div class="mu-container interna">
+    @if (!concluido()) {
+      <h1 class="mu-page-title">Check-in emocional</h1>
+      <p class="mu-page-sub">Sem certo ou errado. Só observe como você está agora.</p>
+
+      <section class="mu-card">
+        <p class="mu-question">Como está seu humor?</p>
+        <div class="humores">
+          @for (h of humores; track h.valor) {
+            <button type="button" [class.ativo]="humor() === h.valor" (click)="humor.set(h.valor)" [attr.aria-label]="h.nome">
+              <span>{{ h.emoji }}</span><small>{{ h.nome }}</small>
+            </button>
+          }
+        </div>
+      </section>
+
+      <section class="mu-card">
+        <p class="mu-question">Qual seu nível de estresse?</p>
+        <div class="mu-scale">
+          @for (n of escala; track n) {
+            <button type="button" [class.ativo]="estresse() === n" (click)="estresse.set(n)">{{ n }}</button>
+          }
+        </div>
+        <div class="mu-scale-legend"><span>Muito baixo</span><span>Muito alto</span></div>
+      </section>
+
+      <section class="mu-card">
+        <p class="mu-question">E a ansiedade?</p>
+        <div class="mu-scale">
+          @for (n of escala; track n) {
+            <button type="button" [class.ativo]="ansiedade() === n" (click)="ansiedade.set(n)">{{ n }}</button>
+          }
+        </div>
+        <div class="mu-scale-legend"><span>Muito baixa</span><span>Muito alta</span></div>
+      </section>
+
+      <section class="mu-card">
+        <p class="mu-question">Quer contar algo? <span class="opcional">(opcional)</span></p>
+        <textarea class="mu-textarea" [(ngModel)]="observacao" maxlength="500"
+                  placeholder="O que está passando pela sua cabeça hoje?"></textarea>
+      </section>
+
+      <button class="mu-btn salvar" (click)="salvar()" [disabled]="enviando()">
+        {{ enviando() ? 'Salvando...' : 'Salvar check-in' }}
+      </button>
+    } @else {
+      <div class="feito">
+        <span class="grande">🌱</span>
+        <h1 class="mu-title">Obrigado por se ouvir</h1>
+        <p class="mu-subtitle">Seu check-in foi salvo. Cuidar de você um pouquinho por dia faz diferença.</p>
+        <button class="mu-btn" (click)="irInicio()">Voltar ao início</button>
+        <button class="mu-btn-sec outro" (click)="novo()">Fazer outro check-in</button>
+      </div>
+    }
+  </div>
+</ion-content>

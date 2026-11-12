@@ -1,0 +1,26 @@
+.humores {
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px;
+  button {
+    border: 1.5px solid transparent;
+    background: var(--mu-input-bg);
+    border-radius: 18px;
+    padding: 10px 2px 8px;
+    display: flex; flex-direction: column; align-items: center; gap: 4px;
+    cursor: pointer; font: inherit;
+    transition: all .15s;
+    span { font-size: 1.7rem; line-height: 1; filter: grayscale(.35); transition: filter .15s, transform .15s; }
+    small { font-size: .62rem; color: var(--mu-muted); white-space: nowrap; }
+    &.ativo {
+      background: #e5efe8; border-color: var(--mu-green-light);
+      span { filter: none; transform: scale(1.12); }
+      small { color: var(--mu-green-dark); font-weight: 600; }
+    }
+  }
+}
+.opcional { font-weight: 400; color: var(--mu-placeholder); font-size: .85rem; }
+.salvar { margin-top: 8px; }
+.feito {
+  flex: 1; display: flex; flex-direction: column; justify-content: center; text-align: center;
+  .grande { font-size: 4rem; margin-bottom: 16px; }
+  .outro { margin-top: 12px; }
+}

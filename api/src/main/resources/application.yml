@@ -1,0 +1,30 @@
+# senhas vem das variaveis de ambiente, os valores depois do ":" sao para rodar local
+server:
+  port: ${PORT:8080}
+
+spring:
+  application:
+    name: menteuni-api
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3306/menteuni?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Sao_Paulo}
+    username: ${DB_USER:root}
+    password: ${DB_PASSWORD:root}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+  flyway:
+    enabled: true
+
+menteuni:
+  jwt:
+    secret: ${JWT_SECRET:troque-esta-chave-em-producao-ela-precisa-ter-32+caracteres}
+    expiracao-horas: ${JWT_EXPIRACAO_HORAS:24}
+  cors:
+    origens: ${CORS_ORIGINS:http://localhost:4200,http://localhost:8100,https://localhost,capacitor://localhost}
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html

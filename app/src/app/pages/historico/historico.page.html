@@ -1,0 +1,62 @@
+<ion-content class="mu-page">
+  <div class="mu-container interna">
+    <h1 class="mu-page-title">Seu histórico</h1>
+    <p class="mu-page-sub">Acompanhe como você tem se sentido ao longo do tempo.</p>
+
+    <div class="periodo">
+      <button [class.ativo]="periodo() === 7" (click)="mudarPeriodo(7)">7 dias</button>
+      <button [class.ativo]="periodo() === 30" (click)="mudarPeriodo(30)">30 dias</button>
+    </div>
+
+    @if (carregando()) {
+      <div class="mu-loading"><ion-spinner name="crescent"></ion-spinner></div>
+    } @else {
+      <div class="resumo">
+        <div class="mu-card tile">
+          <span class="emoji">{{ humorMedio()?.emoji ?? '-' }}</span>
+          <small>Humor médio</small>
+        </div>
+        <div class="mu-card tile">
+          <strong>{{ mediaEstresse() !== null ? (mediaEstresse()! | number:'1.1-1':'pt') : '-' }}</strong>
+          <small>Estresse médio</small>
+        </div>
+        <div class="mu-card tile">
+          <strong>{{ mediaSono() !== null ? (mediaSono()! | number:'1.1-1':'pt') + 'h' : '-' }}</strong>
+          <small>Sono médio</small>
+        </div>
+      </div>
+
+      <section class="mu-card">
+        <h2 class="titulo-card">Emoções</h2>
+        @if (checkins().length) {
+          <div class="grafico"><canvas #emocoes></canvas></div>
+        } @else {
+          <p class="mu-empty">Faça seu primeiro check-in para ver o gráfico aqui.</p>
+        }
+      </section>
+
+      <section class="mu-card">
+        <h2 class="titulo-card">Sono</h2>
+        @if (sonos().length) {
+          <div class="grafico"><canvas #sono></canvas></div>
+        } @else {
+          <p class="mu-empty">Registre suas noites de sono para acompanhar aqui.</p>
+        }
+      </section>
+
+      @if (checkins().length) {
+        <h2 class="mu-section">Últimos check-ins</h2>
+        @for (c of checkins().slice().reverse().slice(0, 5); track c.id) {
+          <div class="linha">
+            <span class="emoji-sm">{{ humorEmoji(c.humor) }}</span>
+            <div class="info">
+              <strong>{{ c.criadoEm | date:"dd/MM 'às' HH:mm":'':'pt' }}</strong>
+              <small>Estresse {{ c.estresse }}/5 · Ansiedade {{ c.ansiedade }}/5</small>
+              @if (c.observacao) { <p>“{{ c.observacao }}”</p> }
+            </div>
+          </div>
+        }
+      }
+    }
+  </div>
+</ion-content>

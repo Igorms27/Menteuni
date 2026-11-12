@@ -1,0 +1,289 @@
+@use '@ionic/angular/css/core.css';
+@use '@ionic/angular/css/normalize.css';
+@use '@ionic/angular/css/structure.css';
+@use '@ionic/angular/css/typography.css';
+@use '@ionic/angular/css/padding.css';
+@use '@ionic/angular/css/flex-utils.css';
+@use '@ionic/angular/css/display.css';
+@use './theme/variables.scss';
+
+html, body { font-family: var(--mu-font); background: var(--mu-bg); }
+
+// ---------- Componentes reutilizáveis do padrão MenteUni ----------
+.mu-page {
+  --background: var(--mu-bg);
+}
+
+.mu-container {
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 28px 28px 32px;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.mu-title {
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: var(--mu-text);
+  text-align: center;
+  margin: 0 0 10px;
+  letter-spacing: -0.01em;
+}
+
+.mu-subtitle {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--mu-muted);
+  text-align: center;
+  margin: 0 0 28px;
+}
+
+.mu-label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--mu-label);
+  margin: 0 0 10px 6px;
+}
+
+.mu-field-group { margin-bottom: 20px; }
+
+.mu-field {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 58px;
+  padding: 0 20px;
+  background: var(--mu-input-bg);
+  border: 1.5px solid transparent;
+  border-radius: var(--mu-radius-field);
+  transition: background .2s, border-color .2s;
+
+  &:focus-within { background: var(--mu-input-bg-focus); border-color: var(--mu-green-light); }
+  &.invalid { border-color: var(--mu-danger); }
+
+  ion-icon { font-size: 20px; color: var(--mu-icon); flex-shrink: 0; }
+
+  input {
+    flex: 1;
+    min-width: 0;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    font-family: var(--mu-font);
+    font-size: 0.95rem;
+    color: var(--mu-text);
+    &::placeholder { color: var(--mu-placeholder); }
+  }
+
+  .mu-eye {
+    border: 0; background: transparent; padding: 4px; display: flex; cursor: pointer;
+  }
+}
+
+.mu-error {
+  font-size: 0.8rem;
+  color: var(--mu-danger);
+  margin: 6px 0 0 8px;
+}
+
+.mu-link {
+  color: var(--mu-green);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  background: none;
+  border: 0;
+  font: inherit;
+  &:hover { color: var(--mu-green-dark); }
+}
+
+.mu-btn {
+  width: 100%;
+  height: 58px;
+  border: 0;
+  border-radius: var(--mu-radius-field);
+  background: var(--mu-gradient);
+  color: #fff;
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  box-shadow: var(--mu-shadow-btn);
+  cursor: pointer;
+  transition: transform .15s, opacity .2s;
+  &:active { transform: scale(.98); }
+  &:disabled { opacity: .6; cursor: default; }
+}
+
+.mu-divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: var(--mu-placeholder);
+  font-size: 0.8rem;
+  margin: 28px 0;
+  &::before, &::after { content: ''; flex: 1; height: 1px; background: var(--mu-border); }
+}
+
+.mu-footer-text {
+  text-align: center;
+  color: var(--mu-muted);
+  font-size: 0.95rem;
+}
+
+// ---------- Telas internas ----------
+.mu-container.interna { padding-top: 20px; padding-bottom: 24px; }
+
+.mu-topbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 4px 0 20px;
+  h1 { font-size: 1.25rem; font-weight: 600; margin: 0; color: var(--mu-text); }
+}
+
+.mu-back {
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  border: 0;
+  background: var(--mu-input-bg);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  ion-icon { font-size: 20px; color: var(--mu-label); }
+}
+
+.mu-page-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--mu-text);
+  margin: 8px 0 4px;
+}
+.mu-page-sub { color: var(--mu-muted); font-size: .92rem; margin: 0 0 22px; line-height: 1.5; }
+
+.mu-section {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--mu-text);
+  margin: 26px 0 12px;
+}
+
+.mu-card {
+  background: var(--mu-surface);
+  border-radius: 24px;
+  padding: 20px;
+  box-shadow: 0 4px 18px rgba(60, 50, 40, 0.06);
+  margin-bottom: 14px;
+}
+
+.mu-card-green {
+  background: var(--mu-gradient);
+  color: #fff;
+  box-shadow: var(--mu-shadow-btn);
+}
+
+.mu-question {
+  font-size: .95rem;
+  font-weight: 600;
+  color: var(--mu-label);
+  margin: 0 0 14px;
+}
+
+// Escala de 5 pílulas (estresse, ansiedade, qualidade do sono)
+.mu-scale {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  button {
+    height: 44px;
+    border: 1.5px solid transparent;
+    border-radius: 16px;
+    background: var(--mu-input-bg);
+    color: var(--mu-muted);
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all .15s;
+    &.ativo { background: var(--mu-green); color: #fff; box-shadow: 0 4px 12px rgba(95,138,115,.3); }
+  }
+}
+.mu-scale-legend {
+  display: flex; justify-content: space-between;
+  font-size: .75rem; color: var(--mu-placeholder);
+  margin-top: 8px; padding: 0 4px;
+}
+
+.mu-textarea {
+  width: 100%;
+  min-height: 96px;
+  border: 1.5px solid transparent;
+  border-radius: 20px;
+  background: var(--mu-input-bg);
+  padding: 16px 18px;
+  font-family: var(--mu-font);
+  font-size: .95rem;
+  color: var(--mu-text);
+  resize: none;
+  outline: 0;
+  &:focus { border-color: var(--mu-green-light); background: var(--mu-input-bg-focus); }
+  &::placeholder { color: var(--mu-placeholder); }
+}
+
+.mu-empty {
+  text-align: center;
+  color: var(--mu-muted);
+  padding: 28px 12px;
+  font-size: .92rem;
+  line-height: 1.5;
+}
+
+.mu-loading { display: flex; justify-content: center; padding: 40px 0; ion-spinner { color: var(--mu-green); } }
+
+.mu-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .02em;
+  background: #e5efe8;
+  color: var(--mu-green-dark);
+}
+
+.mu-btn-sec {
+  width: 100%;
+  height: 52px;
+  border: 1.5px solid var(--mu-border);
+  border-radius: var(--mu-radius-field);
+  background: transparent;
+  color: var(--mu-label);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+// Barra de abas
+ion-tab-bar {
+  --background: #ffffff;
+  --border: 0;
+  --color: var(--mu-placeholder);
+  --color-selected: var(--mu-green-dark);
+  height: 68px;
+  padding-bottom: env(safe-area-inset-bottom);
+  box-shadow: 0 -4px 20px rgba(60, 50, 40, 0.06);
+}
+ion-tab-button {
+  font-family: var(--mu-font);
+  --ripple-color: transparent;
+  ion-label { font-size: .7rem; font-weight: 500; margin-top: 4px; }
+  ion-icon { font-size: 22px; }
+}
+
+.mu-acordando {
+  text-align: center;
+  font-size: .82rem;
+  color: var(--mu-muted);
+  margin: 14px 8px 0;
+  line-height: 1.5;
+}

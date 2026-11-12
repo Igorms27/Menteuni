@@ -1,0 +1,68 @@
+<ion-content class="mu-page">
+  <ion-refresher slot="fixed" (ionRefresh)="carregar($event)"><ion-refresher-content></ion-refresher-content></ion-refresher>
+
+  <div class="mu-container interna">
+    <header class="topo">
+      <div>
+        <p class="ola">{{ saudacao() }},</p>
+        <h1 class="nome">{{ primeiroNome() }} 🌿</h1>
+      </div>
+      <img src="assets/logo.png" alt="MenteUni" class="mini-logo" />
+    </header>
+
+    @for (a of alertas(); track a.id) {
+      <div class="alerta">
+        <ion-icon name="sparkles-outline" class="alerta-ic"></ion-icon>
+        <p>{{ a.mensagem }}</p>
+        <button class="fechar" (click)="dispensar(a)" aria-label="Dispensar"><ion-icon name="close-outline"></ion-icon></button>
+      </div>
+    }
+
+    <a class="mu-card mu-card-green destaque" routerLink="/app/checkin">
+      @if (checkinHoje()) {
+        <span class="emoji">{{ humorHoje()?.emoji }}</span>
+        <div>
+          <h2>Check-in de hoje feito</h2>
+          <p>Você disse que está {{ humorHoje()?.nome?.toLowerCase() }}. Quer registrar de novo?</p>
+        </div>
+      } @else {
+        <span class="emoji">💚</span>
+        <div>
+          <h2>Como você está hoje?</h2>
+          <p>Leva menos de um minuto. Toque para fazer seu check-in.</p>
+        </div>
+      }
+    </a>
+
+    <h2 class="mu-section">Cuide de você</h2>
+    <div class="atalhos">
+      <a class="atalho" routerLink="/sono">
+        <span class="ic sono"><ion-icon name="moon-outline"></ion-icon></span>
+        <strong>Registro de sono</strong><small>Como foi sua noite?</small>
+      </a>
+      <a class="atalho" routerLink="/questionarios">
+        <span class="ic quest"><ion-icon name="clipboard-outline"></ion-icon></span>
+        <strong>Questionários</strong><small>Reflita sobre você</small>
+      </a>
+      <a class="atalho" routerLink="/app/historico">
+        <span class="ic hist"><ion-icon name="stats-chart-outline"></ion-icon></span>
+        <strong>Histórico</strong><small>Veja sua evolução</small>
+      </a>
+      <a class="atalho" routerLink="/app/conteudos">
+        <span class="ic dicas"><ion-icon name="leaf-outline"></ion-icon></span>
+        <strong>Dicas</strong><small>Pequenos cuidados</small>
+      </a>
+    </div>
+
+    @if (dica(); as d) {
+      <h2 class="mu-section">Dica do dia</h2>
+      <a class="mu-card dica" routerLink="/app/conteudos">
+        <div>
+          <h3>{{ d.titulo }}</h3>
+          <p>{{ d.descricao }}</p>
+        </div>
+        <ion-icon name="chevron-forward-outline"></ion-icon>
+      </a>
+    }
+  </div>
+</ion-content>

@@ -1,0 +1,20 @@
+# deploy da API no Render
+services:
+  - type: web
+    name: menteuni-api
+    runtime: docker
+    plan: free
+    dockerContext: ./api
+    dockerfilePath: ./api/Dockerfile
+    healthCheckPath: /v3/api-docs
+    envVars:
+      - key: DB_URL
+        sync: false
+      - key: DB_USER
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: CORS_ORIGINS
+        value: https://localhost,http://localhost,capacitor://localhost

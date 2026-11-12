@@ -1,0 +1,30 @@
+<ion-content class="mu-page">
+  <div class="mu-container interna">
+    <h1 class="mu-page-title">Perfil</h1>
+
+    <div class="mu-card cartao">
+      <div class="avatar">{{ iniciais() }}</div>
+      @if (!editando()) {
+        <h2>{{ auth.usuario()?.nome }}</h2>
+        <p>{{ auth.usuario()?.email }}</p>
+        <button class="mu-btn-sec editar" (click)="editar()"><ion-icon name="create-outline"></ion-icon> Editar nome</button>
+      } @else {
+        <div class="mu-field campo">
+          <input [(ngModel)]="nome" maxlength="120" placeholder="Como quer ser chamado(a)" />
+        </div>
+        <div class="botoes">
+          <button class="mu-btn-sec" (click)="editando.set(false)">Cancelar</button>
+          <button class="mu-btn" (click)="salvar()">Salvar</button>
+        </div>
+      }
+    </div>
+
+    <div class="mu-card menu">
+      <button (click)="privacidade()"><ion-icon name="shield-checkmark-outline"></ion-icon><span>Privacidade e segurança</span><ion-icon name="chevron-forward-outline" class="seta"></ion-icon></button>
+      <button (click)="sobre()"><ion-icon name="information-circle-outline"></ion-icon><span>Sobre o app</span><ion-icon name="chevron-forward-outline" class="seta"></ion-icon></button>
+      <button class="sair" (click)="sair()"><ion-icon name="log-out-outline"></ion-icon><span>Sair da conta</span></button>
+    </div>
+
+    <p class="rodape">MenteUni · versão {{ versao }}<br />Sua saúde mental também importa.</p>
+  </div>
+</ion-content>

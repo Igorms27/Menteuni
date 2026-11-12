@@ -1,0 +1,59 @@
+.topo {
+  display: flex; justify-content: space-between; align-items: center;
+  margin: 8px 0 22px;
+  .ola { margin: 0; color: var(--mu-muted); font-size: .95rem; }
+  .nome { margin: 2px 0 0; font-size: 1.6rem; font-weight: 600; color: var(--mu-text); }
+  .mini-logo { width: 54px; height: auto; }
+}
+
+.alerta {
+  display: flex; gap: 12px; align-items: flex-start;
+  background: #fbf3e6;
+  border-radius: 20px;
+  padding: 14px 12px 14px 16px;
+  margin-bottom: 12px;
+  p { margin: 0; flex: 1; font-size: .87rem; line-height: 1.5; color: #6b5a48; }
+  .alerta-ic { color: #c99a55; font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+  .fechar { border: 0; background: transparent; padding: 0; cursor: pointer; display: flex;
+    ion-icon { font-size: 20px; color: #b3a089; } }
+}
+
+.destaque {
+  display: flex; align-items: center; gap: 16px;
+  text-decoration: none;
+  padding: 22px 20px;
+  .emoji { font-size: 2.4rem; line-height: 1; }
+  h2 { margin: 0 0 4px; font-size: 1.1rem; font-weight: 600; }
+  p { margin: 0; font-size: .87rem; opacity: .92; line-height: 1.45; }
+}
+
+.atalhos {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+}
+.atalho {
+  background: var(--mu-surface);
+  border-radius: 22px;
+  padding: 16px;
+  text-decoration: none;
+  display: flex; flex-direction: column; gap: 4px;
+  box-shadow: 0 4px 18px rgba(60, 50, 40, 0.06);
+  strong { color: var(--mu-text); font-size: .92rem; font-weight: 600; margin-top: 8px; }
+  small { color: var(--mu-muted); font-size: .78rem; }
+  .ic {
+    width: 42px; height: 42px; border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    ion-icon { font-size: 21px; }
+    &.sono { background: #e8eaf6; color: #5c6bc0; }
+    &.quest { background: #fdf0e1; color: #c48a3f; }
+    &.hist { background: #e3f1f4; color: #3f8fa0; }
+    &.dicas { background: #e5efe8; color: var(--mu-green-dark); }
+  }
+}
+
+.dica {
+  display: flex; align-items: center; gap: 12px; text-decoration: none;
+  h3 { margin: 0 0 6px; font-size: .98rem; font-weight: 600; color: var(--mu-text); }
+  p { margin: 0; font-size: .86rem; color: var(--mu-muted); line-height: 1.5;
+      display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  ion-icon { color: var(--mu-icon); font-size: 20px; flex-shrink: 0; }
+}

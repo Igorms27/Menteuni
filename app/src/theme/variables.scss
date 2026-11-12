@@ -1,0 +1,38 @@
+// Padrão visual do MenteUni (baseado nas telas de Login e Cadastro do Figma)
+:root {
+  --mu-bg: #f8f6f1;
+  --mu-surface: #ffffff;
+  --mu-input-bg: #f1ece3;
+  --mu-input-bg-focus: #ece5d9;
+  --mu-border: #e4ded4;
+
+  --mu-text: #2c2f3a;
+  --mu-label: #3b3d45;
+  --mu-muted: #7d6e62;
+  --mu-placeholder: #a0958b;
+  --mu-icon: #b3a89d;
+
+  --mu-green: #7fa48c;
+  --mu-green-dark: #5f8a73;
+  --mu-green-light: #92b39d;
+  --mu-gradient: linear-gradient(90deg, #92b39d 0%, #6b917d 100%);
+  --mu-shadow-btn: 0 8px 20px rgba(95, 138, 115, 0.28);
+
+  --mu-navy: #13285a;
+  --mu-teal: #1fb08c;
+  --mu-danger: #c2665a;
+
+  --mu-radius-field: 28px;
+  --mu-font: 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  // Integração com o Ionic
+  --ion-font-family: var(--mu-font);
+  --ion-background-color: var(--mu-bg);
+  --ion-text-color: var(--mu-text);
+  --ion-color-primary: #6b917d;
+  --ion-color-primary-rgb: 107, 145, 125;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #5e806e;
+  --ion-color-primary-tint: #7a9c8a;
+}

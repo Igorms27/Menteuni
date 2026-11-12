@@ -1,0 +1,24 @@
+.periodo {
+  display: inline-flex; background: var(--mu-input-bg); border-radius: 99px; padding: 4px; margin-bottom: 18px;
+  button { border: 0; background: transparent; padding: 9px 20px; border-radius: 99px; font: inherit; font-size: .88rem;
+           color: var(--mu-muted); cursor: pointer;
+           &.ativo { background: #fff; color: var(--mu-green-dark); font-weight: 600; box-shadow: 0 2px 8px rgba(60,50,40,.08); } }
+}
+.resumo {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+  .tile { padding: 16px 8px; text-align: center; margin: 0 0 14px; display: flex; flex-direction: column; gap: 6px; align-items: center;
+    .emoji { font-size: 1.7rem; line-height: 1.2; }
+    strong { font-size: 1.35rem; font-weight: 600; color: var(--mu-text); line-height: 1.3; }
+    small { font-size: .72rem; color: var(--mu-muted); } }
+}
+.titulo-card { margin: 0 0 12px; font-size: 1rem; font-weight: 600; color: var(--mu-text); }
+.grafico { position: relative; height: 220px; }
+.linha {
+  display: flex; gap: 14px; background: var(--mu-surface); border-radius: 20px; padding: 14px 16px; margin-bottom: 10px;
+  box-shadow: 0 4px 18px rgba(60, 50, 40, 0.05);
+  .emoji-sm { font-size: 1.6rem; }
+  .info { flex: 1; display: flex; flex-direction: column; gap: 2px;
+    strong { font-size: .9rem; color: var(--mu-text); font-weight: 600; }
+    small { font-size: .8rem; color: var(--mu-muted); }
+    p { margin: 6px 0 0; font-size: .85rem; color: var(--mu-label); font-style: italic; } }
+}
