@@ -88,12 +88,25 @@ O APK fica em `app/android/app/build/outputs/apk/release/` e o AAB em `app/andro
 
 ```text
 Menteuni/
-├── api/          # back-end (Spring Boot)
+├── .github/      # template de Pull Request
+├── api/          # back-end (Spring Boot), com os testes da API em api/src/test
 ├── app/          # aplicativo (Ionic/Angular) e projeto Android
-├── docs/         # relatório de deploy
+├── assets/       # imagens e recursos do projeto
+├── docs/         # documentação e relatório de deploy
+├── tests/        # testes de integração e de interface
 ├── render.yaml   # deploy da API no Render
 └── README.md
 ```
+
+## Fluxo de desenvolvimento
+
+Usamos o Git Flow simplificado:
+
+- `main`: versão de produção, só recebe código testado e aprovado.
+- `develop`: branch de integração, criada a partir da `main`.
+- `feature/...` e `docs/...`: branches de trabalho, criadas a partir da `develop`.
+
+Toda mudança entra por Pull Request e precisa da aprovação de pelo menos 1 outro membro do grupo.
 
 ## Distribuição
 
